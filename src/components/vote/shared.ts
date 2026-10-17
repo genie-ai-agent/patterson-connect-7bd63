@@ -1,19 +1,11 @@
 import { opportunities, type Category, type Opportunity } from '../../data/opportunities';
 
 export const blockFor: Record<Category, string> = {
-  elders: 'bg-block-3 text-ink',
-  serve: 'bg-block-1 text-ink',
-  play: 'bg-block-4 text-ink',
+  elders: 'bg-block-3 text-white',
+  serve: 'bg-block-1 text-white',
+  play: 'bg-block-4 text-white',
   events: 'bg-block-2 text-ink',
-  clubs: 'bg-block-5 text-ink',
-};
-
-export const barFor: Record<Category, string> = {
-  elders: 'bg-block-3',
-  serve: 'bg-block-1',
-  play: 'bg-block-4',
-  events: 'bg-block-2',
-  clubs: 'bg-block-5',
+  clubs: 'bg-block-5 text-white',
 };
 
 export const emojiFor: Record<Category, string> = {
@@ -39,30 +31,4 @@ export function pickPair(avoid?: [string, string]): [Opportunity, Opportunity] {
     return [a, b];
   }
   return [opportunities[0], opportunities[1]];
-}
-
-export type Score = { cast: number; matched: number };
-
-const KEY = 'patterson-vote-score';
-
-export function readScore(): Score {
-  try {
-    const raw = window.localStorage.getItem(KEY);
-    if (!raw) return { cast: 0, matched: 0 };
-    const parsed = JSON.parse(raw) as Score;
-    return {
-      cast: Number.isFinite(parsed.cast) ? parsed.cast : 0,
-      matched: Number.isFinite(parsed.matched) ? parsed.matched : 0,
-    };
-  } catch {
-    return { cast: 0, matched: 0 };
-  }
-}
-
-export function writeScore(score: Score): void {
-  try {
-    window.localStorage.setItem(KEY, JSON.stringify(score));
-  } catch {
-    /* private browsing, nothing to do */
-  }
 }

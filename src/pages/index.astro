@@ -1,27 +1,22 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Hero from '../components/Hero.astro';
-import StartHere from '../components/StartHere.astro';
-import TonightsMove from '../components/TonightsMove.tsx';
-import VoteGame from '../components/vote/VoteGame.tsx';
-import Interlude from '../components/Interlude.astro';
-import Explorer from '../components/Explorer.tsx';
-import Upcoming from '../components/Upcoming.astro';
+import Game from '../components/vote/Game.tsx';
 import SiteFooter from '../components/SiteFooter.astro';
 ---
 
 <Layout
-  title="Patterson, Together — where to actually meet people around here"
-  description="Real volunteer programs, senior center days, pickleball nights, hikes, service clubs and town events in and around Patterson, CA, ranked by how much real human time you get."
+  title="Patterson, Together — which should I do next?"
+  description="Tap one of two. Real volunteer programs, senior center days, pickleball nights and town events in and around Patterson, CA, ranked by what the town votes for."
 >
+  <header class="border-b-4 border-ink bg-primary px-4 py-3 text-primary-foreground">
+    <div class="mx-auto max-w-2xl">
+      <p class="font-heading text-base font-black tracking-tight sm:text-lg">
+        Patterson, together
+      </p>
+    </div>
+  </header>
   <main>
-    <Hero />
-    <VoteGame client:load />
-    <TonightsMove client:load />
-    <StartHere />
-    <Interlude />
-    <Explorer client:load />
-    <Upcoming />
+    <Game client:load />
   </main>
   <SiteFooter />
 </Layout>
