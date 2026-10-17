@@ -12,26 +12,21 @@ export const db = createClient({
   },
 });
 
-export type Tallies = Record<string, number>;
+export type VoteRow = { slug: string; loser: string };
 
-/** Every vote ever cast, folded into a count per opportunity. */
-export async function loadTallies(): Promise<Tallies> {
+/** Every vote ever cast: winner plus who it beat, so a matchup can be scored. */
+export async function loadVotes(): Promise<VoteRow[]> {
   const { data, error } = await db
     .from("votes")
-    .select("slug")
+    .select("slug,loser")
     .order("id", { ascending: false })
     .limit(5000);
 
-  if (error) throw new Error(error.message || "could not read the standings");
-
-  const tallies: Tallies = {};
-  for (const row of (data ?? []) as { slug: string }[]) {
-    tallies[row.slug] = (tallies[row.slug] ?? 0) + 1;
-  }
-  return tallies;
+  if (error) throw new Error(error.message || "could not read the votes");
+  return (data ?? []) as VoteRow[];
 }
 
-/** One tap = one row. `loser` records who it beat, for the matchup log. */
+/** One tap = one row. */
 export async function castVote(slug: string, loser: string): Promise<void> {
   const { error } = await db.from("votes").insert({ slug, loser }).select();
   if (error) throw new Error(error.message || "your vote did not save");

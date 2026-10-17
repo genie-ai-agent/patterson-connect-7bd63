@@ -1,22 +1,22 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Game from '../components/vote/Game.tsx';
+import Poll from '../components/vote/Poll.tsx';
 import SiteFooter from '../components/SiteFooter.astro';
 ---
 
 <Layout
   title="What should Catrina do? — Patterson, CA"
-  description="Two options, one tap. You decide what Catrina does with her week: real volunteer programs, senior center days, pickleball nights and town events in and around Patterson, CA."
+  description="A two-option poll: you decide what Catrina does with her week. 25 real volunteer programs, senior center days, pickleball nights and town events in and around Patterson, CA."
 >
-  <header class="border-b-4 border-ink bg-primary px-4 py-3 text-primary-foreground">
-    <div class="mx-auto max-w-2xl">
-      <p class="font-heading text-base font-black tracking-tight sm:text-lg">
-        Catrina's calendar, crowdsourced
-      </p>
-    </div>
+  <header class="px-5 pt-6">
+    <p
+      class="mx-auto max-w-xl text-center text-[0.7rem] font-bold tracking-[0.26em] text-muted-foreground uppercase"
+    >
+      Catrina's calendar, crowdsourced
+    </p>
   </header>
   <main>
-    <Game client:load />
+    <Poll client:load />
   </main>
   <SiteFooter />
 </Layout>

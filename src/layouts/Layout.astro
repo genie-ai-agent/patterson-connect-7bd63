@@ -16,7 +16,7 @@ const { title, description } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#d9531e" />
+    <meta name="theme-color" content="#f7efdf" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -26,37 +26,11 @@ const { title, description } = Astro.props;
       rel="stylesheet"
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@400..800&display=swap"
       rel="stylesheet"
     />
   </head>
-  <body class="relative">
+  <body>
     <slot />
-    <script is:inline>
-      (() => {
-        const items = document.querySelectorAll('.reveal');
-        if (!items.length) return;
-        if (
-          !('IntersectionObserver' in window) ||
-          window.matchMedia('(prefers-reduced-motion: reduce)').matches
-        ) {
-          items.forEach((el) => el.classList.add('in'));
-          return;
-        }
-        const io = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (!entry.isIntersecting) return;
-              const el = entry.target;
-              const delay = Number(el.getAttribute('data-delay') || 0);
-              window.setTimeout(() => el.classList.add('in'), delay);
-              io.unobserve(el);
-            });
-          },
-          { rootMargin: '0px 0px -12% 0px', threshold: 0.12 },
-        );
-        items.forEach((el) => io.observe(el));
-      })();
-    </script>
   </body>
 </html>

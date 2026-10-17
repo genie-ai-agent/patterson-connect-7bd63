@@ -1,21 +1,18 @@
 @import "tailwindcss";
-@import "./typeset.css";
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  /* ---- type: display serif + grotesque sans, high contrast ---- */
+  /* ---- type: display serif + grotesque sans ---- */
   --font-sans: "Archivo", ui-sans-serif, system-ui, sans-serif;
   --font-heading: "Playfair Display", ui-serif, Georgia, serif;
   --font-serif: "Playfair Display", ui-serif, Georgia, serif;
 
-  /* ---- base shadcn surface tokens ---- */
+  /* ---- base surface tokens ---- */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
@@ -30,127 +27,60 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
-  /* ---- magazine ink + stock ---- */
   --color-ink: var(--ink);
   --color-paper: var(--paper);
 
-  /* ---- saturated color blocks (one per category of the town) ---- */
+  /* ---- one colour per vibe ---- */
   --color-block-1: var(--block-1);
-  --color-block-1-foreground: var(--block-1-foreground);
   --color-block-2: var(--block-2);
-  --color-block-2-foreground: var(--block-2-foreground);
   --color-block-3: var(--block-3);
-  --color-block-3-foreground: var(--block-3-foreground);
   --color-block-4: var(--block-4);
-  --color-block-4-foreground: var(--block-4-foreground);
   --color-block-5: var(--block-5);
-  --color-block-5-foreground: var(--block-5-foreground);
 
-  --radius-sm: calc(var(--radius) * 0.6);
-  --radius-md: calc(var(--radius) * 0.8);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.4);
-  --radius-2xl: calc(var(--radius) * 1.8);
-  --radius-3xl: calc(var(--radius) * 2.2);
-  --radius-4xl: calc(var(--radius) * 2.6);
+  --radius-lg: 1rem;
+  --radius-xl: 1.25rem;
+  --radius-2xl: 1.5rem;
+  --radius-3xl: 1.75rem;
 
-  /* printed-matter offset: zero blur, ink colored */
-  --shadow-2xs: 1px 1px 0 0 var(--ink);
-  --shadow-xs: 2px 2px 0 0 var(--ink);
-  --shadow-sm: 3px 3px 0 0 var(--ink);
-  --shadow-md: 4px 4px 0 0 var(--ink);
-  --shadow-lg: 6px 6px 0 0 var(--ink);
-  --shadow-xl: 9px 9px 0 0 var(--ink);
-  --shadow-2xl: 14px 14px 0 0 var(--ink);
+  /* soft, single-direction shadows: elegant, not printed */
+  --shadow-soft: 0 1px 2px oklch(0.17 0.022 38 / 0.05), 0 10px 24px -14px oklch(0.17 0.022 38 / 0.28);
+  --shadow-lift: 0 2px 4px oklch(0.17 0.022 38 / 0.06), 0 22px 42px -18px oklch(0.17 0.022 38 / 0.34);
 }
 
 :root {
-  --radius: 0;
+  --ink: oklch(0.19 0.022 38);
+  --paper: oklch(0.99 0.008 88);
 
-  --ink: oklch(0.17 0.022 38);
-  --paper: oklch(0.985 0.012 86);
+  /* warm valley paper */
+  --background: oklch(0.973 0.014 85);
+  --foreground: oklch(0.19 0.022 38);
+  --card: oklch(0.995 0.006 88);
+  --card-foreground: oklch(0.19 0.022 38);
 
-  /* sun-bleached newsprint, apricot country */
-  --background: oklch(0.955 0.021 83);
-  --foreground: oklch(0.17 0.022 38);
-  --card: oklch(0.992 0.01 88);
-  --card-foreground: oklch(0.17 0.022 38);
-  --popover: oklch(0.992 0.01 88);
-  --popover-foreground: oklch(0.17 0.022 38);
-
-  /* sunset ember: the loudest block on the page */
   --primary: oklch(0.56 0.215 36);
-  --primary-foreground: oklch(0.985 0.012 86);
+  --primary-foreground: oklch(0.99 0.008 88);
 
-  /* ripe apricot */
   --secondary: oklch(0.805 0.165 72);
-  --secondary-foreground: oklch(0.17 0.022 38);
+  --secondary-foreground: oklch(0.19 0.022 38);
 
-  --muted: oklch(0.915 0.026 82);
-  --muted-foreground: oklch(0.385 0.035 44);
+  --muted: oklch(0.93 0.018 82);
+  --muted-foreground: oklch(0.44 0.03 44);
 
-  /* valley dusk plum */
-  --accent: oklch(0.42 0.175 345);
-  --accent-foreground: oklch(0.985 0.012 86);
+  --accent: oklch(0.44 0.17 345);
+  --accent-foreground: oklch(0.99 0.008 88);
 
   --destructive: oklch(0.52 0.22 26);
-  --destructive-foreground: oklch(0.985 0.012 86);
+  --destructive-foreground: oklch(0.99 0.008 88);
 
-  --border: oklch(0.17 0.022 38);
-  --input: oklch(0.17 0.022 38);
+  --border: oklch(0.19 0.022 38);
+  --input: oklch(0.19 0.022 38);
   --ring: oklch(0.56 0.215 36);
 
-  --block-1: oklch(0.56 0.215 36); /* ember   — serve */
-  --block-1-foreground: oklch(0.985 0.012 86);
-  --block-2: oklch(0.805 0.165 72); /* apricot — big town moments */
-  --block-2-foreground: oklch(0.17 0.022 38);
-  --block-3: oklch(0.42 0.175 345); /* plum    — elders */
-  --block-3-foreground: oklch(0.985 0.012 86);
-  --block-4: oklch(0.47 0.115 232); /* canyon  — play */
-  --block-4-foreground: oklch(0.985 0.012 86);
-  --block-5: oklch(0.49 0.125 148); /* orchard — clubs */
-  --block-5-foreground: oklch(0.985 0.012 86);
-}
-
-.dark {
-  --ink: oklch(0.955 0.021 83);
-  --paper: oklch(0.16 0.02 330);
-
-  --background: oklch(0.16 0.02 330);
-  --foreground: oklch(0.955 0.021 83);
-  --card: oklch(0.21 0.026 332);
-  --card-foreground: oklch(0.955 0.021 83);
-  --popover: oklch(0.21 0.026 332);
-  --popover-foreground: oklch(0.955 0.021 83);
-
-  --primary: oklch(0.68 0.2 40);
-  --primary-foreground: oklch(0.16 0.02 330);
-  --secondary: oklch(0.82 0.16 76);
-  --secondary-foreground: oklch(0.16 0.02 330);
-
-  --muted: oklch(0.26 0.026 332);
-  --muted-foreground: oklch(0.74 0.024 84);
-
-  --accent: oklch(0.7 0.19 350);
-  --accent-foreground: oklch(0.16 0.02 330);
-
-  --destructive: oklch(0.62 0.22 26);
-  --destructive-foreground: oklch(0.16 0.02 330);
-
-  --border: oklch(0.955 0.021 83);
-  --input: oklch(0.955 0.021 83);
-  --ring: oklch(0.68 0.2 40);
-
-  --block-1: oklch(0.65 0.2 38);
-  --block-1-foreground: oklch(0.16 0.02 330);
-  --block-2: oklch(0.82 0.16 76);
-  --block-2-foreground: oklch(0.16 0.02 330);
-  --block-3: oklch(0.66 0.19 348);
-  --block-3-foreground: oklch(0.16 0.02 330);
-  --block-4: oklch(0.68 0.13 232);
-  --block-4-foreground: oklch(0.16 0.02 330);
-  --block-5: oklch(0.7 0.14 150);
-  --block-5-foreground: oklch(0.16 0.02 330);
+  --block-1: oklch(0.55 0.2 34); /* ember   — serve the town */
+  --block-2: oklch(0.8 0.16 71); /* apricot — town moments */
+  --block-3: oklch(0.45 0.16 345); /* plum    — elders */
+  --block-4: oklch(0.47 0.11 232); /* canyon  — play */
+  --block-5: oklch(0.47 0.115 148); /* orchard — clubs */
 }
 
 @layer base {
@@ -158,17 +88,19 @@
     border-color: var(--border);
   }
 
-  html {
-    scroll-behavior: smooth;
-  }
-
   body {
     background-color: var(--background);
     color: var(--foreground);
     font-family: var(--font-sans);
-    font-synthesis-weight: none;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1 1 auto;
   }
 
   h1,
@@ -176,8 +108,13 @@
   h3 {
     font-family: var(--font-heading);
     font-weight: 900;
-    letter-spacing: -0.025em;
-    line-height: 0.92;
+    letter-spacing: -0.03em;
+    line-height: 0.95;
+  }
+
+  button,
+  a {
+    -webkit-tap-highlight-color: transparent;
   }
 
   ::selection {
@@ -186,228 +123,27 @@
   }
 }
 
-/* ---------- texture, kept off the text ---------- */
-
-/* glow sits behind the hero only, never under body copy */
-.hero-glow {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background-image:
-    radial-gradient(circle at 8% -10%, oklch(0.805 0.165 72 / 0.5), transparent 46%),
-    radial-gradient(circle at 100% -6%, oklch(0.56 0.215 36 / 0.32), transparent 42%);
-}
-
-/* diagonal engraver hatch, used on oversized decoration */
-.hatch {
-  background-image: repeating-linear-gradient(
-    -45deg,
-    var(--ink) 0 1px,
-    transparent 1px 7px
-  );
-  opacity: 0.22;
-}
-
-/* four-color press stripe, the masthead motif — now it moves */
-.press-stripe {
-  background: repeating-linear-gradient(
-    90deg,
-    var(--block-1) 0 4rem,
-    var(--block-2) 4rem 8rem,
-    var(--block-3) 8rem 12rem,
-    var(--block-4) 12rem 16rem,
-    var(--block-5) 16rem 20rem
-  );
-  animation: stripe-run 9s linear infinite;
-}
-
-@keyframes stripe-run {
-  to {
-    background-position: 20rem 0;
-  }
-}
-
-/* ---------- editorial furniture ---------- */
-
-.rule-heavy {
-  border-top: 3px solid var(--ink);
-}
-
-.rule-hair {
-  border-top: 1px solid var(--ink);
-}
-
-.kicker {
-  font-family: var(--font-sans);
-  font-weight: 700;
-  font-size: 0.6875rem;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-}
-
-/* oversized number/letter used as decoration behind content */
-.deco {
-  font-family: var(--font-heading);
-  font-weight: 900;
-  line-height: 0.7;
-  letter-spacing: -0.05em;
-  pointer-events: none;
-  user-select: none;
-}
-
-/* text knocked out of a gradient — exactly one accent word */
-.sunset-text {
-  background-image: linear-gradient(
-    96deg,
-    var(--block-3),
-    var(--block-1) 45%,
-    var(--block-2)
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.panel {
-  border: 2px solid var(--ink);
-  background: var(--card);
-}
-
-.tilt-l {
-  transform: rotate(-1.4deg);
-}
-
-.tilt-r {
-  transform: rotate(1.6deg);
-}
-
-.lift {
-  transition:
-    transform 160ms ease,
-    box-shadow 160ms ease;
-}
-
-.lift:hover {
-  transform: translate(-2px, -3px);
-  box-shadow: 9px 9px 0 0 var(--ink);
-}
-
-.marquee-track {
-  display: inline-flex;
-  gap: 2.5rem;
-  white-space: nowrap;
-  animation: marquee 24s linear infinite;
-}
-
-.marquee-track-rev {
-  animation-direction: reverse;
-  animation-duration: 34s;
-}
-
-/* ---------- energy ---------- */
-
-/* scroll reveal, applied by a tiny IntersectionObserver */
-.reveal {
-  opacity: 0;
-  transform: translateY(18px);
-}
-
-.reveal.in {
-  animation: rise 620ms cubic-bezier(0.16, 0.84, 0.28, 1) forwards;
-}
-
-@keyframes rise {
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-/* the primary CTA breathes so the eye lands on it */
-.pulse-cta {
-  animation: pulse-cta 2.6s ease-in-out infinite;
-}
-
-@keyframes pulse-cta {
-  0%,
-  100% {
-    box-shadow: 4px 4px 0 0 var(--ink);
-  }
-  50% {
-    box-shadow: 4px 4px 0 0 var(--ink), 0 0 0 7px oklch(0.56 0.215 36 / 0.22);
-  }
-}
-
-/* slot-machine flicker while the spinner is cycling */
-.flicker {
-  animation: flicker 90ms steps(1) infinite;
-}
-
-@keyframes flicker {
-  50% {
-    opacity: 0.45;
-  }
-}
-
+/* result panel arriving */
 .pop {
-  animation: pop 420ms cubic-bezier(0.2, 1.5, 0.4, 1);
+  animation: pop 420ms cubic-bezier(0.2, 1.3, 0.4, 1);
 }
 
 @keyframes pop {
   0% {
-    transform: scale(0.92) rotate(-1.5deg);
-  }
-  60% {
-    transform: scale(1.02) rotate(0.6deg);
+    opacity: 0;
+    transform: scale(0.97) translateY(6px);
   }
   100% {
+    opacity: 1;
     transform: none;
   }
-}
-
-.heart-pop {
-  animation: heart-pop 340ms cubic-bezier(0.2, 1.6, 0.3, 1);
-}
-
-@keyframes heart-pop {
-  40% {
-    transform: scale(1.35);
-  }
-  100% {
-    transform: none;
-  }
-}
-
-@keyframes marquee {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-/* prose voice for the long-copy blocks */
-.typeset {
-  --typeset-size: 1.0625rem;
-  --typeset-leading: 1.75;
-  --typeset-flow: 1.35em;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .marquee-track,
-  .press-stripe,
-  .pulse-cta,
-  .flicker,
-  .pop,
-  .heart-pop {
+  .pop {
     animation: none;
   }
-  .lift:hover {
-    transform: none;
-  }
-  .reveal {
-    opacity: 1;
-    transform: none;
+  * {
+    transition-duration: 1ms !important;
   }
 }
