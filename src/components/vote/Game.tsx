@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import type { Opportunity } from '../../data/opportunities';
 import { oneFor } from '../../data/oneliners';
+import { kickers, pickOne, verdicts } from '../../data/quips';
 import { castVote, loadTallies, type Tallies } from '../../lib/db';
 import Choice from './Choice';
 import Standings from './Standings';
@@ -11,6 +12,7 @@ type Picked = { won: Opportunity; lost: Opportunity };
 export default function Game() {
   const [pair, setPair] = useState<[Opportunity, Opportunity]>(() => pickPair());
   const [picked, setPicked] = useState<Picked | null>(null);
+  const [round, setRound] = useState(0);
   const [tallies, setTallies] = useState<Tallies>({});
   const [saving, setSaving] = useState(false);
   const [failed, setFailed] = useState(false);
@@ -39,6 +41,7 @@ export default function Game() {
   function next() {
     setPair((prev) => pickPair([prev[0].id, prev[1].id]));
     setPicked(null);
+    setRound((n) => n + 1);
     setFailed(false);
     loadTallies()
       .then(setTallies)
@@ -49,14 +52,14 @@ export default function Game() {
     <>
       <section className="mx-auto w-full max-w-2xl px-4 pt-8 pb-10 sm:pt-12">
         {picked ? (
-          <Result picked={picked} failed={failed} onNext={next} />
+          <Result picked={picked} failed={failed} round={round} onNext={next} />
         ) : (
           <>
             <h1 className="font-heading text-center text-3xl leading-[1.05] font-black sm:text-5xl">
-              Which should I do?
+              What should Catrina do?
             </h1>
             <p className="mt-2 text-center text-sm text-muted-foreground sm:text-base">
-              Tap one. That's the whole thing.
+              Tap one. She gets no say in this.
             </p>
             <div className="mt-6 grid gap-3 sm:mt-8 sm:grid-cols-2 sm:gap-4">
               <Choice opp={pair[0]} disabled={saving} onPick={() => pick(pair[0], pair[1])} />
@@ -73,16 +76,20 @@ export default function Game() {
 function Result({
   picked,
   failed,
+  round,
   onNext,
 }: {
   picked: Picked;
   failed: boolean;
+  round: number;
   onNext: () => void;
 }) {
   const { won } = picked;
   return (
     <div>
-      <p className="text-center text-sm font-bold tracking-[0.2em] uppercase">You picked</p>
+      <p className="text-center text-sm font-bold tracking-[0.2em] uppercase">
+        {pickOne(verdicts, round)}
+      </p>
       <div
         className={`${blockFor[won.category]} mt-3 border-4 border-ink px-5 py-7 shadow-lg sm:px-8 sm:py-9`}
       >
@@ -112,6 +119,7 @@ function Result({
             >
               {c.kind === 'tel' ? 'Call ' : c.kind === 'email' ? 'Email ' : ''}
               {c.label}
+              {c.kind === 'url' ? ' ↗' : ''}
             </a>
           ))}
         </div>
@@ -130,6 +138,7 @@ function Result({
       >
         Next two →
       </button>
+      <p className="mt-2 text-center text-sm text-muted-foreground">{pickOne(kickers, round)}</p>
     </div>
   );
 }

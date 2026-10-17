@@ -14,9 +14,11 @@ export default function Standings({ tallies }: { tallies: Tallies }) {
 
   return (
     <section className="mx-auto w-full max-w-2xl px-4 pb-16">
-      <h2 className="font-heading text-xl font-black sm:text-2xl">What the town picks</h2>
+      <h2 className="font-heading text-xl font-black sm:text-2xl">Catrina's to-do list, per the town</h2>
       <p className="mt-1 text-sm text-muted-foreground">
-        {total === 0 ? 'No votes yet. Yours goes first.' : `${total} ${total === 1 ? 'vote' : 'votes'} so far. Tap a row to reach them.`}
+        {total === 0
+          ? "Nobody has voted yet. Her week is wide open, which is dangerous."
+          : `${total} ${total === 1 ? 'person has' : 'people have'} weighed in on her life. Tap a row to call them.`}
       </p>
 
       <ol className="mt-4 divide-y-2 divide-ink border-y-2 border-ink">
