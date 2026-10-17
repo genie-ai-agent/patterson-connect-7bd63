@@ -1,0 +1,320 @@
+@import "tailwindcss";
+@import "./typeset.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  /* ---- type: display serif + grotesque sans, high contrast ---- */
+  --font-sans: "Archivo", ui-sans-serif, system-ui, sans-serif;
+  --font-heading: "Playfair Display", ui-serif, Georgia, serif;
+  --font-serif: "Playfair Display", ui-serif, Georgia, serif;
+
+  /* ---- base shadcn surface tokens ---- */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* ---- magazine ink + stock ---- */
+  --color-ink: var(--ink);
+  --color-paper: var(--paper);
+
+  /* ---- saturated color blocks (one per category of the town) ---- */
+  --color-block-1: var(--block-1);
+  --color-block-1-foreground: var(--block-1-foreground);
+  --color-block-2: var(--block-2);
+  --color-block-2-foreground: var(--block-2-foreground);
+  --color-block-3: var(--block-3);
+  --color-block-3-foreground: var(--block-3-foreground);
+  --color-block-4: var(--block-4);
+  --color-block-4-foreground: var(--block-4-foreground);
+  --color-block-5: var(--block-5);
+  --color-block-5-foreground: var(--block-5-foreground);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+
+  /* printed-matter offset: zero blur, ink colored */
+  --shadow-2xs: 1px 1px 0 0 var(--ink);
+  --shadow-xs: 2px 2px 0 0 var(--ink);
+  --shadow-sm: 3px 3px 0 0 var(--ink);
+  --shadow-md: 4px 4px 0 0 var(--ink);
+  --shadow-lg: 6px 6px 0 0 var(--ink);
+  --shadow-xl: 9px 9px 0 0 var(--ink);
+  --shadow-2xl: 14px 14px 0 0 var(--ink);
+}
+
+:root {
+  --radius: 0;
+
+  --ink: oklch(0.17 0.022 38);
+  --paper: oklch(0.985 0.012 86);
+
+  /* sun-bleached newsprint, apricot country */
+  --background: oklch(0.955 0.021 83);
+  --foreground: oklch(0.17 0.022 38);
+  --card: oklch(0.992 0.01 88);
+  --card-foreground: oklch(0.17 0.022 38);
+  --popover: oklch(0.992 0.01 88);
+  --popover-foreground: oklch(0.17 0.022 38);
+
+  /* sunset ember: the loudest block on the page */
+  --primary: oklch(0.56 0.215 36);
+  --primary-foreground: oklch(0.985 0.012 86);
+
+  /* ripe apricot */
+  --secondary: oklch(0.805 0.165 72);
+  --secondary-foreground: oklch(0.17 0.022 38);
+
+  --muted: oklch(0.905 0.024 82);
+  --muted-foreground: oklch(0.435 0.032 46);
+
+  /* valley dusk plum */
+  --accent: oklch(0.42 0.175 345);
+  --accent-foreground: oklch(0.985 0.012 86);
+
+  --destructive: oklch(0.52 0.22 26);
+  --destructive-foreground: oklch(0.985 0.012 86);
+
+  --border: oklch(0.17 0.022 38);
+  --input: oklch(0.17 0.022 38);
+  --ring: oklch(0.56 0.215 36);
+
+  --block-1: oklch(0.56 0.215 36); /* ember   — serve */
+  --block-1-foreground: oklch(0.985 0.012 86);
+  --block-2: oklch(0.805 0.165 72); /* apricot — big town moments */
+  --block-2-foreground: oklch(0.17 0.022 38);
+  --block-3: oklch(0.42 0.175 345); /* plum    — elders */
+  --block-3-foreground: oklch(0.985 0.012 86);
+  --block-4: oklch(0.47 0.115 232); /* canyon  — play */
+  --block-4-foreground: oklch(0.985 0.012 86);
+  --block-5: oklch(0.49 0.125 148); /* orchard — clubs */
+  --block-5-foreground: oklch(0.985 0.012 86);
+}
+
+.dark {
+  --ink: oklch(0.955 0.021 83);
+  --paper: oklch(0.16 0.02 330);
+
+  --background: oklch(0.16 0.02 330);
+  --foreground: oklch(0.955 0.021 83);
+  --card: oklch(0.21 0.026 332);
+  --card-foreground: oklch(0.955 0.021 83);
+  --popover: oklch(0.21 0.026 332);
+  --popover-foreground: oklch(0.955 0.021 83);
+
+  --primary: oklch(0.68 0.2 40);
+  --primary-foreground: oklch(0.16 0.02 330);
+  --secondary: oklch(0.82 0.16 76);
+  --secondary-foreground: oklch(0.16 0.02 330);
+
+  --muted: oklch(0.26 0.026 332);
+  --muted-foreground: oklch(0.74 0.024 84);
+
+  --accent: oklch(0.7 0.19 350);
+  --accent-foreground: oklch(0.16 0.02 330);
+
+  --destructive: oklch(0.62 0.22 26);
+  --destructive-foreground: oklch(0.16 0.02 330);
+
+  --border: oklch(0.955 0.021 83);
+  --input: oklch(0.955 0.021 83);
+  --ring: oklch(0.68 0.2 40);
+
+  --block-1: oklch(0.65 0.2 38);
+  --block-1-foreground: oklch(0.16 0.02 330);
+  --block-2: oklch(0.82 0.16 76);
+  --block-2-foreground: oklch(0.16 0.02 330);
+  --block-3: oklch(0.66 0.19 348);
+  --block-3-foreground: oklch(0.16 0.02 330);
+  --block-4: oklch(0.68 0.13 232);
+  --block-4-foreground: oklch(0.16 0.02 330);
+  --block-5: oklch(0.7 0.14 150);
+  --block-5-foreground: oklch(0.16 0.02 330);
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    font-synthesis-weight: none;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 10% -5%, oklch(0.805 0.165 72 / 0.38), transparent 42%),
+      radial-gradient(circle at 96% 2%, oklch(0.56 0.215 36 / 0.22), transparent 38%),
+      radial-gradient(circle at 50% 108%, oklch(0.42 0.175 345 / 0.16), transparent 55%);
+    background-attachment: fixed;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-heading);
+    font-weight: 900;
+    letter-spacing: -0.025em;
+    line-height: 0.92;
+  }
+
+  ::selection {
+    background: var(--block-2);
+    color: var(--ink);
+  }
+}
+
+/* ---------- printed texture ---------- */
+
+/* letterpress halftone dots */
+.halftone {
+  background-image: radial-gradient(var(--ink) 1px, transparent 1.2px);
+  background-size: 9px 9px;
+  opacity: 0.16;
+}
+
+/* diagonal engraver hatch, used on oversized decoration */
+.hatch {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    var(--ink) 0 1px,
+    transparent 1px 7px
+  );
+  opacity: 0.22;
+}
+
+/* four-color press stripe, the masthead motif */
+.press-stripe {
+  background: linear-gradient(
+    90deg,
+    var(--block-1) 0 20%,
+    var(--block-2) 20% 40%,
+    var(--block-3) 40% 60%,
+    var(--block-4) 60% 80%,
+    var(--block-5) 80% 100%
+  );
+}
+
+/* ---------- editorial furniture ---------- */
+
+.rule-heavy {
+  border-top: 3px solid var(--ink);
+}
+
+.rule-hair {
+  border-top: 1px solid var(--ink);
+}
+
+.kicker {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 0.6875rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+/* oversized number/letter used as decoration behind content */
+.deco {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  line-height: 0.7;
+  letter-spacing: -0.05em;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* text knocked out of a gradient — exactly one accent word */
+.sunset-text {
+  background-image: linear-gradient(
+    96deg,
+    var(--block-3),
+    var(--block-1) 45%,
+    var(--block-2)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.panel {
+  border: 2px solid var(--ink);
+  background: var(--card);
+}
+
+.tilt-l {
+  transform: rotate(-1.4deg);
+}
+
+.tilt-r {
+  transform: rotate(1.6deg);
+}
+
+.lift {
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.lift:hover {
+  transform: translate(-2px, -3px);
+  box-shadow: 9px 9px 0 0 var(--ink);
+}
+
+.marquee-track {
+  display: inline-flex;
+  gap: 2.5rem;
+  white-space: nowrap;
+  animation: marquee 30s linear infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* prose voice for the long-copy blocks */
+.typeset {
+  --typeset-size: 1.0625rem;
+  --typeset-leading: 1.75;
+  --typeset-flow: 1.35em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+  .lift:hover {
+    transform: none;
+  }
+}

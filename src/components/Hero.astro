@@ -1,0 +1,120 @@
+---
+import { opportunities } from '../data/opportunities';
+import { buttonVariants } from './ui/button';
+import { cn } from '../lib/utils';
+
+const count = opportunities.length;
+const marquee = [
+  'free pickleball partners',
+  'Loteria at the senior center',
+  'somebody waiting for your visit',
+  'apricot fiesta parade',
+  'a table that saves you a seat',
+  'Del Puerto Canyon at golden hour',
+];
+---
+
+<header class="relative overflow-hidden">
+  <div class="press-stripe h-2.5 w-full"></div>
+
+  <!-- masthead -->
+  <div class="mx-auto w-full max-w-6xl px-5 sm:px-8">
+    <div
+      class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 border-b-2 border-ink py-3"
+    >
+      <span class="kicker">Patterson, Together</span>
+      <span class="kicker text-muted-foreground">
+        No. 01 &middot; Apricot Capital of the World
+      </span>
+    </div>
+  </div>
+
+  <div class="relative mx-auto w-full max-w-6xl px-5 pb-12 pt-8 sm:px-8 sm:pb-20 sm:pt-12">
+    <!-- oversized decoration -->
+    <span
+      class="deco absolute -right-6 -top-6 z-0 text-[11rem] text-primary/15 sm:-right-4 sm:text-[20rem] lg:text-[26rem]"
+      aria-hidden="true"
+    >
+      {count}
+    </span>
+
+    <div class="relative z-10 grid grid-cols-12 gap-x-4">
+      <div class="col-span-12 lg:col-span-9">
+        <p class="kicker text-primary">A field guide to being around people</p>
+
+        <h1
+          class="mt-4 font-heading text-[clamp(2.9rem,13.5vw,8.5rem)] tracking-[-0.03em]"
+        >
+          so where do you<br />
+          <em class="sunset-text font-black italic">actually</em>
+          <span class="block sm:inline">meet people</span>
+          <span class="block">around here?</span>
+        </h1>
+      </div>
+
+      <!-- rotated plum block, overlaps the headline column on desktop -->
+      <aside
+        class="tilt-r col-span-12 mt-7 border-2 border-ink bg-block-3 p-5 text-block-3-foreground shadow-lg sm:max-w-sm lg:absolute lg:right-0 lg:top-[13rem] lg:z-20 lg:col-span-3 lg:mt-0 lg:w-[16rem] lg:max-w-none"
+      >
+        <span class="deco block text-6xl sm:text-7xl">{count}</span>
+        <p class="kicker mt-3 border-t border-block-3-foreground/40 pt-3">
+          real ways in, ranked by face time
+        </p>
+      </aside>
+    </div>
+
+    <div class="relative z-10 mt-8 grid grid-cols-12 gap-x-6 gap-y-6 sm:mt-10">
+      <p
+        class="col-span-12 text-[1.0625rem] leading-[1.6] first-letter:float-left first-letter:mr-3 first-letter:mt-1 first-letter:font-heading first-letter:text-[4.25rem] first-letter:font-black first-letter:leading-[0.72] first-letter:text-primary sm:text-lg lg:col-span-7"
+      >
+        Right here. Every one of these is a real program, club, court or kitchen within
+        driving distance of the City Circle, sorted by one question: how much face-to-face
+        human time do you actually get? Volunteer work where somebody thanks you out loud.
+        Weekly games where you rotate partners all night. Clubs where the same twelve people
+        show up for a decade and then show up at your wedding.
+      </p>
+
+      <div class="col-span-12 lg:col-span-4 lg:col-start-9">
+        <div class="border-l-4 border-block-4 pl-4">
+          <p class="kicker text-block-4">The one rule</p>
+          <p class="mt-2 font-heading text-2xl italic leading-tight sm:text-3xl">
+            Pick one thing. Call it today. Let the rest of the list wait.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="relative z-10 mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
+      <a
+        href="#start"
+        class={cn(
+          buttonVariants({ size: 'lg' }),
+          'min-h-[54px] w-full border-2 border-ink px-7 font-sans text-[0.8rem] font-black uppercase tracking-[0.18em] shadow-md transition-transform hover:-translate-y-0.5 hover:bg-primary sm:w-auto',
+        )}
+      >
+        Start with three easy ones
+      </a>
+      <a
+        href="#explore"
+        class={cn(
+          buttonVariants({ variant: 'outline', size: 'lg' }),
+          'min-h-[54px] w-full border-2 border-ink bg-secondary px-7 font-sans text-[0.8rem] font-black uppercase tracking-[0.18em] text-secondary-foreground shadow-md transition-transform hover:-translate-y-0.5 hover:bg-secondary sm:w-auto',
+        )}
+      >
+        Browse all {count}
+      </a>
+    </div>
+  </div>
+
+  <div class="relative border-y-2 border-ink bg-ink py-3 text-paper">
+    <div class="marquee-track kicker text-[0.7rem]">
+      {
+        [...marquee, ...marquee].map((item) => (
+          <span>
+            <span class="text-secondary">&#10022;</span> {item}
+          </span>
+        ))
+      }
+    </div>
+  </div>
+</header>

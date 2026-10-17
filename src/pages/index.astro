@@ -1,0 +1,23 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import StartHere from '../components/StartHere.astro';
+import Interlude from '../components/Interlude.astro';
+import Explorer from '../components/Explorer.tsx';
+import Upcoming from '../components/Upcoming.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+---
+
+<Layout
+  title="Patterson, Together — where to actually meet people around here"
+  description="Real volunteer programs, senior center days, pickleball nights, hikes, service clubs and town events in and around Patterson, CA, ranked by how much real human time you get."
+>
+  <main>
+    <Hero />
+    <StartHere />
+    <Interlude />
+    <Explorer client:load />
+    <Upcoming />
+  </main>
+  <SiteFooter />
+</Layout>
