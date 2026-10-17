@@ -82,7 +82,7 @@ export default function TonightsMove() {
           <div className="col-span-12 lg:col-span-5">
             <p className="kicker text-secondary">Can&rsquo;t decide</p>
             <h2 className="mt-3 font-heading text-[clamp(2.3rem,10vw,4rem)] leading-[0.9] text-paper">
-              Let the town<br />
+              Let the dice<br />
               <span className="sunset-text italic">pick for you</span>
             </h2>
             <p className="mt-4 max-w-sm text-[1.0625rem] leading-[1.55] text-paper/80">

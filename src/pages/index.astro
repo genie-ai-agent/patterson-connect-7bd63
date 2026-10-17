@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import StartHere from '../components/StartHere.astro';
 import TonightsMove from '../components/TonightsMove.tsx';
+import VoteGame from '../components/vote/VoteGame.tsx';
 import Interlude from '../components/Interlude.astro';
 import Explorer from '../components/Explorer.tsx';
 import Upcoming from '../components/Upcoming.astro';
@@ -15,6 +16,7 @@ import SiteFooter from '../components/SiteFooter.astro';
 >
   <main>
     <Hero />
+    <VoteGame client:load />
     <TonightsMove client:load />
     <StartHere />
     <Interlude />
