@@ -31,11 +31,32 @@ const { title, description } = Astro.props;
     />
   </head>
   <body class="relative">
-    <div
-      class="halftone pointer-events-none fixed inset-0 z-50 mix-blend-multiply"
-      aria-hidden="true"
-    >
-    </div>
     <slot />
+    <script is:inline>
+      (() => {
+        const items = document.querySelectorAll('.reveal');
+        if (!items.length) return;
+        if (
+          !('IntersectionObserver' in window) ||
+          window.matchMedia('(prefers-reduced-motion: reduce)').matches
+        ) {
+          items.forEach((el) => el.classList.add('in'));
+          return;
+        }
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+              const el = entry.target;
+              const delay = Number(el.getAttribute('data-delay') || 0);
+              window.setTimeout(() => el.classList.add('in'), delay);
+              io.unobserve(el);
+            });
+          },
+          { rootMargin: '0px 0px -12% 0px', threshold: 0.12 },
+        );
+        items.forEach((el) => io.observe(el));
+      })();
+    </script>
   </body>
 </html>

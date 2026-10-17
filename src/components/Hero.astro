@@ -12,13 +12,22 @@ const marquee = [
   'a table that saves you a seat',
   'Del Puerto Canyon at golden hour',
 ];
+const marquee2 = [
+  '$3 and a paddle',
+  'the pantry needs hands Thursday',
+  'Rotary eats at Mils',
+  'free agents get assigned a team',
+  'Apricot Fiesta, June 2027',
+  'somebody saves you a seat at lunch',
+];
 ---
 
 <header class="relative overflow-hidden">
-  <div class="press-stripe h-2.5 w-full"></div>
+  <div class="hero-glow z-0" aria-hidden="true"></div>
+  <div class="press-stripe relative z-10 h-3 w-full"></div>
 
   <!-- masthead -->
-  <div class="mx-auto w-full max-w-6xl px-5 sm:px-8">
+  <div class="relative z-10 mx-auto w-full max-w-6xl px-5 sm:px-8">
     <div
       class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 border-b-2 border-ink py-3"
     >
@@ -89,10 +98,19 @@ const marquee = [
         href="#start"
         class={cn(
           buttonVariants({ size: 'lg' }),
-          'min-h-[54px] w-full border-2 border-ink px-7 font-sans text-[0.8rem] font-black uppercase tracking-[0.18em] shadow-md transition-transform hover:-translate-y-0.5 hover:bg-primary sm:w-auto',
+          'pulse-cta min-h-[54px] w-full border-2 border-ink px-7 font-sans text-[0.8rem] font-black uppercase tracking-[0.18em] transition-transform hover:-translate-y-0.5 hover:bg-primary sm:w-auto',
         )}
       >
         Start with three easy ones
+      </a>
+      <a
+        href="#spin"
+        class={cn(
+          buttonVariants({ variant: 'outline', size: 'lg' }),
+          'min-h-[54px] w-full border-2 border-ink bg-block-3 px-7 font-sans text-[0.8rem] font-black uppercase tracking-[0.18em] text-block-3-foreground shadow-md transition-transform hover:-translate-y-0.5 hover:bg-block-3 sm:w-auto',
+        )}
+      >
+        &#127922; Roll me a plan
       </a>
       <a
         href="#explore"
@@ -106,12 +124,25 @@ const marquee = [
     </div>
   </div>
 
-  <div class="relative border-y-2 border-ink bg-ink py-3 text-paper">
+  <div class="relative z-10 border-t-2 border-ink bg-ink py-3 text-paper">
     <div class="marquee-track kicker text-[0.7rem]">
       {
         [...marquee, ...marquee].map((item) => (
           <span>
             <span class="text-secondary">&#10022;</span> {item}
+          </span>
+        ))
+      }
+    </div>
+  </div>
+  <div
+    class="relative z-10 overflow-hidden border-y-2 border-ink bg-secondary py-2.5 text-secondary-foreground"
+  >
+    <div class="marquee-track marquee-track-rev kicker text-[0.7rem]">
+      {
+        [...marquee2, ...marquee2].map((item) => (
+          <span>
+            <span class="text-primary">&#9733;</span> {item}
           </span>
         ))
       }

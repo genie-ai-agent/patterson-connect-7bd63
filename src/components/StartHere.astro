@@ -42,7 +42,7 @@ const tilts = ['md:-rotate-1', '', 'md:rotate-1'];
   <ol class="mt-10 grid grid-cols-1 gap-7 md:grid-cols-3 md:gap-5">
     {
       picks.map((pick, i) => (
-        <li class={`relative ${offsets[i]} ${tilts[i]}`}>
+        <li class={`reveal relative ${offsets[i]} ${tilts[i]}`} data-delay={i * 110}>
           <article class="lift relative flex h-full flex-col border-2 border-ink bg-card shadow-lg">
             <div
               class={`flex items-center justify-between gap-3 border-b-2 border-ink px-5 py-3 ${blocks[i].bg} ${blocks[i].fg}`}

@@ -148,10 +148,13 @@ function OppCard({
             aria-label={saved ? `Remove ${item.title} from shortlist` : `Save ${item.title}`}
             className={cn(
               'flex w-12 shrink-0 items-center justify-center border-l-2 border-ink transition-colors active:scale-95',
-              saved ? 'bg-ink text-paper' : 'bg-card text-ink hover:bg-secondary',
+              saved ? 'bg-primary text-primary-foreground' : 'bg-card text-ink hover:bg-secondary',
             )}
           >
-            <Heart className={cn('h-5 w-5', saved && 'fill-current')} aria-hidden="true" />
+            <Heart
+              className={cn('h-5 w-5', saved && 'heart-pop fill-current')}
+              aria-hidden="true"
+            />
           </button>
         </span>
       </div>
